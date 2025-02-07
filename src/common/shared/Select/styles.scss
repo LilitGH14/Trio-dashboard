@@ -58,3 +58,11 @@
     margin-top: 5px;
   }
 }
+
+@media (min-width: 320px) and (max-width: 599px) {
+  .select-wrapper {
+    .select-button {
+      width: 100%;
+    }
+  }
+}

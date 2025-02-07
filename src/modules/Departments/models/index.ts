@@ -4,11 +4,16 @@ export interface IDepartmentHeader {
   col: string;
 }
 
+export interface IDepartmentMobileHeader {
+  main: Partial<IDepartmentHeader>[];
+  details: Partial<IDepartmentHeader>[];
+}
+
 export interface IDepartmentData {
   id: number;
   name: string;
   description: string;
-  head: string;
+  head: string|null;
   branches: number;
   status: "disabled" | "pending" | "active";
 }
@@ -16,5 +21,5 @@ export interface IDepartmentData {
 export interface IFilter {
   name: string;
   description: string;
-  head: string | null;
+  head: string|null;
 }

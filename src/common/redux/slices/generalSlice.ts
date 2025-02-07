@@ -1,39 +1,23 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: any = {
   user: null,
-  isLoading: false,
-  error: null,
-  cache: {},
-}
+  openSidebar: false,
+};
 
 const generalSlice = createSlice({
-  name: 'general',
+  name: "general",
   initialState,
   reducers: {
-    setCacheData(state, action: PayloadAction<any>) {
-      state.cache[action.payload.city] = {
-        forecast: action.payload.forecast,
-        currentWeather: action.payload.currentWeather,
-      }
-    },
-    setLoading(state, action: PayloadAction<any>) {
-      state.isLoading = action.payload
-    },
-    setError(state, action: PayloadAction<any>) {
-      state.error = action.payload
+    setOpenSidbar(state) {
+      state.openSidebar = !state.openSidebar;
     },
     setUser(state, action: PayloadAction<any>) {
-      state.user = action.payload
+      state.user = action.payload;
     },
   },
-})
+});
 
-export const {
-  setUser,
-  setLoading,
-  setError,
-  setCacheData,
-} = generalSlice.actions
+export const { setUser, setOpenSidbar } = generalSlice.actions;
 
-export default generalSlice
+export default generalSlice;

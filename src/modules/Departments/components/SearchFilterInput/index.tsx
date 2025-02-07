@@ -2,8 +2,8 @@ import React from "react";
 import "./styles.scss";
 
 interface IInputProps {
-  handleChange: any;
-  handleBlur: any;
+  handleChange: (e: any) => void;
+  handleBlur:(e: any) => void;
   value: string;
   name: string;
   label: string;

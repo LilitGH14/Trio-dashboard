@@ -11,3 +11,16 @@
     }
   }
 }
+
+@media (max-width: 1024px) {
+  .layout {
+    .layout-content {
+      width: 100%;
+
+      .page-wrapper {
+        height: 90vh;
+        padding: 1rem 2rem;
+      }
+    }
+  }
+}

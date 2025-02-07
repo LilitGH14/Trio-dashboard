@@ -23,7 +23,7 @@
       border: none;
       border-top-right-radius: 8px;
       border-bottom-right-radius: 8px;
-      
+
       &::placeholder {
         color: #d4d8dd;
       }
@@ -40,6 +40,32 @@
     img {
       height: 0.875rem;
       margin: 0.65rem;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .search-filter-inp-wrapper {
+    max-width: unset;
+    width: 100%;
+    margin-bottom: 1rem;
+    margin-right: 0;
+
+    label {
+      font-size: 0.8rem;
+    }
+
+    .filter-input-wrapper {
+      height: 3rem;
+
+      img {
+        height: 1.2rem;
+        margin: 10px;
+      }
+
+      input {
+        height: 2.8rem;
+      }
     }
   }
 }

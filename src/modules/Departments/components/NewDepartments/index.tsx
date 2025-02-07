@@ -14,8 +14,8 @@ import { IDepartmentData } from "../../models/index.ts";
 import "./styles.scss";
 
 interface INewDepartmentsProps {
-  handleChange: () => void;
-  handleClose: () => void;
+  handleChange: (e: any) => void;
+  handleClose: (e: any) => void;
   dep: IDepartmentData | null;
 }
 
@@ -59,7 +59,7 @@ const NewDepartments = ({
         {dep?.name ? "Edit" : "Create"} Department
       </Typography>
       <Formik
-        initialValues={dep ?? { name: "", description: "", head: null }}
+        initialValues={dep ?? { name: "", description: "", head: "" }}
         onSubmit={(values) => {
           dep?.name ? onUpdate(values, dep) : onCreate(values);
         }}

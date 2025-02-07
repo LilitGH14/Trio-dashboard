@@ -3,7 +3,10 @@ import NoDepartments from "./components/NoDepartments/index.tsx";
 import DataTable from "../../common/shared/Table/index.tsx";
 import { IDepartmentData, IFilter } from "./models/index.ts";
 import PageHeader from "./components/PageHeader/index.tsx";
-import { DEPARTMENT_HEADERS } from "../../common/constants/departments.ts";
+import {
+  DEPARTMENT_HEADERS,
+  DEPARTMENT_MOBILE_HEADERS,
+} from "../../common/constants/departments.ts";
 import { getDepartments } from "./services/departmentService.ts";
 import Modal from "../../common/shared/Modal/index.tsx";
 import Filters from "./components/Filters/index.tsx";
@@ -127,13 +130,13 @@ const Departments = () => {
           />
           <DataTable
             headers={DEPARTMENT_HEADERS}
+            mobileHeaders={DEPARTMENT_MOBILE_HEADERS}
             data={departments}
             selectDep={updateDepartment}
           />
         </>
       )}
-      {!departments && <NoDepartments open={setOpenNewForm} />}
-
+      {departments === null && <NoDepartments open={setOpenNewForm} />}
       {openNewForm && (
         <NewDepartments
           handleClose={handelModalClose}

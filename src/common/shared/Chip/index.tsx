@@ -9,6 +9,10 @@ interface IChipProps {
 }
 
 const Chip = ({ variant, value }: IChipProps) => {
-  return <span className={`chip ${variant}`}>{value}</span>;
+  return (
+    <span className={`chip ${variant}`}>
+      <span>{value}</span>
+    </span>
+  );
 };
 export default Chip;

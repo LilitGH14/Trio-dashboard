@@ -1,19 +1,28 @@
-import React from "react";
-import Chip from "../Chip/index.tsx";
-import LinkText from "../Link/index.tsx";
+import React, { lazy } from "react";
 import {
   IDepartmentData,
   IDepartmentHeader,
+  IDepartmentMobileHeader,
 } from "../../../modules/Departments/models/index.ts";
+import Chip from "../Chip/index.tsx";
+import LinkText from "../Link/index.tsx";
 import "./styles.scss";
-import Typography from "../Typography/index.tsx";
+
+const MobileTable = lazy(() => import("./MobileTable.tsx"));
+const DesktopTable = lazy(() => import("./DesktopTable.tsx"));
 
 interface ITabeleProps {
   headers: IDepartmentHeader[];
+  mobileHeaders: IDepartmentMobileHeader;
   data: IDepartmentData[];
   selectDep: (dep: IDepartmentData) => void;
 }
-const DataTable = ({ headers, data, selectDep }: ITabeleProps) => {
+const DataTable = ({
+  headers,
+  mobileHeaders,
+  data,
+  selectDep,
+}: ITabeleProps) => {
   const setData = (h: IDepartmentHeader, d: IDepartmentData) => {
     if (h.headerId === "status") {
       return (
@@ -36,30 +45,30 @@ const DataTable = ({ headers, data, selectDep }: ITabeleProps) => {
     }
   };
 
+  if (window.innerWidth > 768) {
+    return (
+      <div className="table-wrapper">
+        <div className="table-content">
+          <DesktopTable
+            headers={headers}
+            data={data}
+            selectDep={selectDep}
+            setData={setData}
+          />
+        </div>
+      </div>
+    );
+  }
+  
   return (
     <div className="table-wrapper">
-      <div className="table-content">
-        <div className="fixed-header">
-          {headers.map((h: IDepartmentHeader) => (
-            <div className={`header-item ${h.col}`} key={h.name}>
-              {h.name}
-            </div>
-          ))}
-          <div className="header-item action"></div>
-        </div>
-        {data.length === 0 && <div className="no-data"><Typography variant={"title"} children={"No data"}/></div>}
-        {data.map((d: IDepartmentData) => (
-          <div className="data-wrapper" key={d.name}>
-            {headers.map((h: IDepartmentHeader) => setData(h, d))}
-            <div
-              className="data-item action"
-              role="button"
-              onClick={() => selectDep(d)}
-            >
-              ...
-            </div>
-          </div>
-        ))}
+      <div className="mobile-table-content">
+        <MobileTable
+          headers={mobileHeaders}
+          data={data}
+          selectDep={selectDep}
+          setData={setData}
+        />
       </div>
     </div>
   );

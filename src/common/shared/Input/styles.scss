@@ -37,7 +37,7 @@
 
 @media (min-width: 320px) and (max-width: 599px) {
   .input-wrapper{
-    input{
+    input, textarea{
       width: 100%;
     }
   }

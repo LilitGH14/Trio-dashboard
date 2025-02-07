@@ -2,6 +2,8 @@
   background: #1d3557;
   height: 100vh;
   width: 16.3rem;
+  overflow-x: hidden;
+  transition: 0.5s;
 
   .header {
     height: 4.3rem;
@@ -62,6 +64,39 @@
       &.active {
         display: block;
       }
+    }
+  }
+
+  .menu-btn-wrapper {
+    display: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .sidebar-wrapper {
+    width: 0;
+
+    &.open {
+      width: 25rem;
+    }
+
+    &.closed {
+      width: 0;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .sidebar-wrapper {
+    position: absolute;
+    z-index: 99;
+
+    .header{
+      justify-content: space-between;
+    }
+
+    .menu-btn-wrapper {
+      display: block;
     }
   }
 }

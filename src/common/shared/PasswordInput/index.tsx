@@ -4,8 +4,8 @@ import "./styles.scss";
 
 interface IInputProps {
   label: string;
-  handleChange: any;
-  handleBlur: any;
+  handleChange: (e: any) => void;
+  handleBlur: (e: any) => void;
   value: string;
   errors: any;
   touched: any;

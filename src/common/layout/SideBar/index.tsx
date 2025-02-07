@@ -5,11 +5,17 @@ import { IRoute } from "../../models/route.ts";
 import NavItem from "./NavItem.tsx";
 import { useLocation } from "react-router-dom";
 import "./styles.scss";
+import { useAppSelector } from "../../hooks/useAppSelector.tsx";
+import IconButton from "../../shared/IconButton/index.tsx";
+import { useDispatch } from "react-redux";
+import { setOpenSidbar } from "../../redux/slices/generalSlice.ts";
 
 export const Sidebar = () => {
+  const dispatch = useDispatch();
   const location = useLocation();
+  const { openSidebar } = useAppSelector((state) => state.general);
 
-  const [currentTab, setCurrentTab] = useState("/dashboard");
+  const [currentTab, setCurrentTab] = useState("");
   const [openedNavItem, setOpenedNavItem] = useState("dashboard");
 
   const openMenu = (navItem: string) => {
@@ -23,9 +29,17 @@ export const Sidebar = () => {
   }, []);
 
   return (
-    <aside className="sidebar-wrapper">
+    <aside className={`sidebar-wrapper ${openSidebar ? "open" : "closed"}`}>
       <div className="header">
         <img src="/assets/svg/logo/lg-logo.svg" alt="Logo" />
+        <div className="menu-btn-wrapper">
+          <IconButton
+            disabled={false}
+            icon={"/assets/svg/general-icons/menu.svg"}
+            name={"menu"}
+            onClick={() => dispatch(setOpenSidbar())}
+          />
+        </div>
       </div>
       <nav className="navigation">
         {modules.map((module: IRoute) =>

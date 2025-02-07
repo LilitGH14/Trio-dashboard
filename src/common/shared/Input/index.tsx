@@ -7,8 +7,8 @@ type Variants = "text" | "number" | "textarea";
 interface IInputProps {
   variant: Variants;
   label: string;
-  handleChange: any;
-  handleBlur: any;
+  handleChange: (e: any) => void;
+  handleBlur: (e: any) => void;
   value: string;
   errors: any;
   touched: any;

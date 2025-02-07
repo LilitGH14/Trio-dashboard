@@ -6,6 +6,18 @@ export const DEPARTMENT_HEADERS = [
   { name: "Status", headerId: "status", col: "col-1" },
 ];
 
+export const DEPARTMENT_MOBILE_HEADERS = {
+  main: [
+    { name: "Name", headerId: "name", col: "col-4" },
+    { name: "Branches", headerId: "branches", col: "col-4" },
+    { name: "Status", headerId: "status", col: "col-4" },
+  ],
+  details: [
+    { name: "Head", headerId: "head", col: "col-4" },
+    { name: "Description", headerId: "description", col: "col-4" },
+  ],
+};
+
 export const DEPARTMENT_HEADS = [
   { label: "Armen Harutyunyan", value: "Armen Harutyunyan" },
   { label: "Manuk Manukyan", value: "Manuk Manukyan" },

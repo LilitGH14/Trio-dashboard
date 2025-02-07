@@ -32,3 +32,11 @@
     margin: 0.65rem;
   }
 }
+
+@media (max-width: 1024px) {
+  .search-input-wrapper {
+    input {
+      width: 100%;
+    }
+  }
+}
