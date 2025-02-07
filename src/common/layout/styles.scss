@@ -1,0 +1,13 @@
+.layout {
+  display: flex;
+
+  .layout-content {
+    width: calc(100% - 16.3rem);
+
+    .page-wrapper {
+      padding: 2rem;
+      height: calc(100% - 4.3rem);
+      background: #f8f9fa;
+    }
+  }
+}

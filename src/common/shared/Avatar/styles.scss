@@ -1,0 +1,12 @@
+.avatar-wrapper {
+  height: 2.8rem;
+  width: 2.8rem;
+  border: 1px solid #46484e33;
+  border-radius: 50%;
+  z-index: 1;
+
+  img {
+    height: -webkit-fill-available;
+    border-radius: 50%;
+  }
+}
