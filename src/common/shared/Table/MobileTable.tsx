@@ -5,6 +5,7 @@ import {
   IDepartmentMobileHeader,
 } from "../../../modules/Departments/common/models.ts";
 import IconButton from "../IconButton/index.tsx";
+import Typography from "../Typography/index.tsx";
 import "./styles.scss";
 
 interface ITabeleProps {
@@ -29,6 +30,12 @@ const MobileTable = ({ headers, data, setData, selectDep }: ITabeleProps) => {
           </div>
         ))}
       </div>
+
+      {!data.length && (
+        <div className="no-results">
+          <Typography variant={"subTitle"} children={"No Results"} />
+        </div>
+      )}
 
       {data.map((d: IDepartmentData) => (
         <div key={d.id} className="card">

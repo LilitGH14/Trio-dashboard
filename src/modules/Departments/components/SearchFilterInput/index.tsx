@@ -3,7 +3,7 @@ import "./styles.scss";
 
 interface IInputProps {
   handleChange: (e: any) => void;
-  handleBlur:(e: any) => void;
+  handleBlur: (e: any) => void;
   value: string;
   name: string;
   label: string;

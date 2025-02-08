@@ -1,6 +1,13 @@
 .table-wrapper {
   .mobile-table-content {
     display: none;
+
+    .no-results {
+      h3 {
+        text-align: center;
+        padding: 2rem;
+      }
+    }
   }
 
   .table-content {

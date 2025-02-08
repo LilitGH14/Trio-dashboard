@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { HEIGHTS } from "../common/constants.ts";
 
 const initialState: any = {
   departments: null,
@@ -12,7 +11,7 @@ const initialState: any = {
   },
   searchFiltersModalIsOpen: false,
   searchFilter: {
-    filter: "",
+    filter: null,
     height: 0,
   },
 };
@@ -30,6 +29,43 @@ const departmentsSlice = createSlice({
     },
     resetFilterDepartments(state) {
       state.filteredDepartments = state.departments;
+      state.searchFilter = {
+        filter: null,
+        ...state.searchFilter,
+      };
+      state.statusFilter = {
+        filter: "all",
+        ...state.statusFilter,
+      };
+    },
+    setFilterBySearch(state, action) {
+      state.filteredDepartments = state.departments.filter((item: any) => {
+        return (
+          (action.payload.name === "" ||
+            item.name
+              .replaceAll(" ", "")
+              .toLowerCase()
+              .includes(
+                action.payload.name.replaceAll(" ", "").toLowerCase()
+              )) &&
+          (action.payload.description === "" ||
+            item.description
+              .replaceAll(" ", "")
+              .toLowerCase()
+              .includes(
+                action.payload.description.replaceAll(" ", "").toLowerCase()
+              )) &&
+          (action.payload.head === null ||
+            item.head
+              .replaceAll(" ", "")
+              .toLowerCase()
+              .includes(action.payload.head.replaceAll(" ", "").toLowerCase()))
+        );
+      });
+
+      state.searchFilter = {
+        ...action.payload,
+      };
     },
     setFilterByStatus(state, action) {
       if (action.payload === "all") {
@@ -39,15 +75,34 @@ const departmentsSlice = createSlice({
           (f) => f.status === action.payload
         );
       }
-      state.searchFiltersModalIsOpen = false;
     },
-    openSearchFilterModal(state) {
+    openSearchFilterModal(state, action) {
       state.searchFiltersModalIsOpen = true;
-      state.searchFilter = { height: HEIGHTS.search, ...state.searchFilter };
+      state.searchFilter = {
+        ...state.searchFilter,
+        ...action.payload,
+      };
     },
-    openStatusFilterModal(state) {
+    openStatusFilterModal(state, action) {
       state.statusFiltersModalIsOpen = true;
-      state.statusFilter = { height: HEIGHTS.filters, ...state.statusFilter };
+      state.statusFilter = {
+        ...state.statusFilter,
+        ...action.payload,
+      };
+    },
+    closeStatusFilterModal(state, action) {
+      state.statusFiltersModalIsOpen = false;
+      state.statusFilter = {
+        ...state.statusFilter,
+        ...action.payload,
+      };
+    },
+    closeSearchFilterModal(state, action) {
+      state.searchFiltersModalIsOpen = false;
+      state.searchFilter = {
+        ...state.searchFilter,
+        ...action.payload,
+      };
     },
   },
 });
@@ -59,6 +114,9 @@ export const {
   setFilterByStatus,
   openSearchFilterModal,
   openStatusFilterModal,
+  closeStatusFilterModal,
+  closeSearchFilterModal,
+  setFilterBySearch,
 } = departmentsSlice.actions;
 
 export default departmentsSlice;

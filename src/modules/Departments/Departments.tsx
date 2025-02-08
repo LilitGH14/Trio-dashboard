@@ -1,7 +1,7 @@
 import React, { lazy, useState } from "react";
 import NoDepartments from "./components/NoDepartments/index.tsx";
 import DataTable from "../../common/shared/Table/index.tsx";
-import { IDepartmentData, IFilter } from "./common/models.ts";
+import { IDepartmentData } from "./common/models.ts";
 import PageHeader from "./components/PageHeader/index.tsx";
 import {
   DEPARTMENT_HEADERS,
@@ -10,18 +10,14 @@ import {
 import { getDepartments } from "./services/departmentService.ts";
 import Modal from "../../common/shared/Modal/index.tsx";
 import Filters from "./components/Filters/index.tsx";
-import "./styles.scss";
 import { useAppSelector } from "../../common/hooks/useAppSelector.tsx";
 import { useDispatch } from "react-redux";
-import {
-  resetFilterDepartments,
-  setFilterDepartments,
-} from "./store/departmentsSlice.ts";
+import { setAllDepartments } from "./store/departmentsSlice.ts";
+import "./styles.scss";
 
 const NewDepartments = lazy(
   () => import("./components/NewDepartments/index.tsx")
 );
-
 const SuccessCard = lazy(
   () => import("../../common/shared/SuccessCard/index.tsx")
 );
@@ -54,51 +50,11 @@ const Departments = () => {
     setSelectedDepartment(dep);
   };
 
-  const filterDeps = (filters: IFilter) => {
-    let _filteredDeps = departments.filter((item: any) => {
-      return (
-        (filters.name === "" ||
-          item.name
-            .replaceAll(" ", "")
-            .toLowerCase()
-            .includes(filters.name.replaceAll(" ", "").toLowerCase())) &&
-        (filters.description === "" ||
-          item.description
-            .replaceAll(" ", "")
-            .toLowerCase()
-            .includes(filters.description.replaceAll(" ", "").toLowerCase())) &&
-        (filters.head === null ||
-          item.head
-            .replaceAll(" ", "")
-            .toLowerCase()
-            .includes(filters.head.replaceAll(" ", "").toLowerCase()))
-      );
-    });
-
-    dispatch(setFilterDepartments(_filteredDeps));
-
-    // in real case as we can deal with a huge data, we should use API getFilteredDepartments(filters)
-  };
-
-  const resetDepsFilters = () => {
-    dispatch(resetFilterDepartments());
-  };
-
-  const filterByStatus = (status: string) => {
-    dispatch(
-      setFilterDepartments(
-        status === "all"
-          ? departments
-          : departments.filter((f) => f.status === status)
-      )
-    );
-  };
-
   const getDeps = () => {
     getDepartments()
       .then((res) => {
-        if (res === 200) {
-          dispatch(setFilterDepartments(res.departments));
+        if (res.status === 200) {
+          dispatch(setAllDepartments(res.departments));
         }
       })
       .catch((err) => {
@@ -115,11 +71,7 @@ const Departments = () => {
       {departments && (
         <>
           <PageHeader open={() => setOpenNewForm(true)} />
-          <Filters
-            filterDeps={filterDeps}
-            resetDepsFilters={resetDepsFilters}
-            filterByStatus={filterByStatus}
-          />
+          <Filters />
           <DataTable
             headers={DEPARTMENT_HEADERS}
             mobileHeaders={DEPARTMENT_MOBILE_HEADERS}
