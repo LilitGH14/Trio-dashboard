@@ -41,7 +41,6 @@ const Departments = () => {
 
   const handleUpdate = () => {
     setOpenNewForm(false);
-    getDeps();
     setDepIsUpdatedSuccessFully(true);
   };
 

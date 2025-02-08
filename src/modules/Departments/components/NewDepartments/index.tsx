@@ -11,12 +11,14 @@ import {
   updateDepartments,
 } from "../../services/departmentService.ts";
 import { IDepartmentData } from "../../common/models.ts";
+import { useDispatch } from "react-redux";
+import { setAllDepartments } from "../../store/departmentsSlice.ts";
 import "./styles.scss";
 
 interface INewDepartmentsProps {
-  handleChange: (e: any) => void;
-  handleClose: (e: any) => void;
+  handleClose: () => void;
   dep: IDepartmentData | null;
+  handleChange: () => void;
 }
 
 const NewDepartments = ({
@@ -24,6 +26,8 @@ const NewDepartments = ({
   handleChange,
   dep,
 }: INewDepartmentsProps) => {
+  const dispatch = useDispatch();
+
   const onUpdate = (values, dep) => {
     updateDepartments({
       ...values,
@@ -32,8 +36,9 @@ const NewDepartments = ({
       branches: dep.branches,
     })
       .then((res) => {
-        if (!!res) {
-          handleChange();
+        if (res.status === 200) {
+          dispatch(setAllDepartments(res.departments));
+          handleClose();
         }
       })
       .catch((err) => {
@@ -44,7 +49,8 @@ const NewDepartments = ({
   const onCreate = (values) => {
     createDepartments(values)
       .then((res) => {
-        if (!!res) {
+        if (res.status === 200) {
+          dispatch(setAllDepartments(res.departments));
           handleChange();
         }
       })
