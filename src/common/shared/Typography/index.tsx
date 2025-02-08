@@ -1,7 +1,14 @@
 import { createElement } from "react";
 import "./styles.scss";
 
-type Variants = "title" |"titleMd"| "subTitle" | "text" | "textBold";
+type Variants =
+  | "title"
+  | "titleMd"
+  | "subTitle"
+  | "text"
+  | "textSm"
+  | "textBold"
+  | "textSMBold";
 
 interface ITypographyProps {
   variant: Variants;
@@ -12,8 +19,10 @@ const Tags = {
   title: "h1",
   subTitle: "h3",
   text: "h6",
+  textSm: "p",
+  textSMBold:"p",
   textBold: "h6",
-  titleMd:"h4"
+  titleMd: "h4",
 };
 
 const Typography = ({ variant = "text", children }: ITypographyProps) => {

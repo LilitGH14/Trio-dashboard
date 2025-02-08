@@ -10,7 +10,7 @@ import {
   createDepartments,
   updateDepartments,
 } from "../../services/departmentService.ts";
-import { IDepartmentData } from "../../models/index.ts";
+import { IDepartmentData } from "../../common/models.ts";
 import "./styles.scss";
 
 interface INewDepartmentsProps {

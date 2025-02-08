@@ -4,15 +4,16 @@ import { NAVIGATION_ICONS } from "../../constants/navigationIcons.tsx";
 import { IRoute } from "../../models/route.ts";
 import NavItem from "./NavItem.tsx";
 import { useLocation } from "react-router-dom";
-import "./styles.scss";
 import { useAppSelector } from "../../hooks/useAppSelector.tsx";
 import IconButton from "../../shared/IconButton/index.tsx";
 import { useDispatch } from "react-redux";
 import { setOpenSidbar } from "../../redux/slices/generalSlice.ts";
+import "./styles.scss";
 
 export const Sidebar = () => {
   const dispatch = useDispatch();
   const location = useLocation();
+
   const { openSidebar } = useAppSelector((state) => state.general);
 
   const [currentTab, setCurrentTab] = useState("");
@@ -22,6 +23,13 @@ export const Sidebar = () => {
     setOpenedNavItem((prevVal) =>
       prevVal === navItem ? "dashboard" : navItem
     );
+
+    dispatch(setOpenSidbar());
+  };
+
+  const selectNavItem = (tab: string) => {
+    setCurrentTab(tab);
+    dispatch(setOpenSidbar());
   };
 
   useEffect(() => {
@@ -84,7 +92,7 @@ export const Sidebar = () => {
                     name={m.name}
                     path={`${module.routeProps.path}${m.path}`}
                     currentTab={currentTab}
-                    setCurrentTab={setCurrentTab}
+                    setCurrentTab={selectNavItem}
                   />
                 ))}
               </div>
@@ -96,7 +104,7 @@ export const Sidebar = () => {
               name={module.name}
               path={module.routeProps.path}
               currentTab={currentTab}
-              setCurrentTab={setCurrentTab}
+              setCurrentTab={selectNavItem}
             />
           )
         )}

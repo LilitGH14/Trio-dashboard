@@ -1,7 +1,7 @@
 import React, { lazy, useState } from "react";
 import NoDepartments from "./components/NoDepartments/index.tsx";
 import DataTable from "../../common/shared/Table/index.tsx";
-import { IDepartmentData, IFilter } from "./models/index.ts";
+import { IDepartmentData, IFilter } from "./common/models.ts";
 import PageHeader from "./components/PageHeader/index.tsx";
 import {
   DEPARTMENT_HEADERS,
@@ -11,6 +11,12 @@ import { getDepartments } from "./services/departmentService.ts";
 import Modal from "../../common/shared/Modal/index.tsx";
 import Filters from "./components/Filters/index.tsx";
 import "./styles.scss";
+import { useAppSelector } from "../../common/hooks/useAppSelector.tsx";
+import { useDispatch } from "react-redux";
+import {
+  resetFilterDepartments,
+  setFilterDepartments,
+} from "./store/departmentsSlice.ts";
 
 const NewDepartments = lazy(
   () => import("./components/NewDepartments/index.tsx")
@@ -21,14 +27,14 @@ const SuccessCard = lazy(
 );
 
 const Departments = () => {
+  const dispatch = useDispatch();
+
+  const { departments, filteredDepartments } = useAppSelector(
+    (state) => state.departments
+  );
+
   const [depUpdatedSuccessFully, setDepIsUpdatedSuccessFully] = useState(false);
   const [openNewForm, setOpenNewForm] = useState(false);
-  const [departments, setDepartments] = useState<IDepartmentData[] | null>(
-    null
-  );
-  const [_departments, _setDepartments] = useState<IDepartmentData[] | null>(
-    null
-  );
   const [selectedDepartment, setSelectedDepartment] =
     useState<IDepartmentData | null>(null);
 
@@ -49,64 +55,50 @@ const Departments = () => {
   };
 
   const filterDeps = (filters: IFilter) => {
-    let _filteredDeps = (_departments as IDepartmentData[])?.filter(
-      (item: any) => {
-        return (
-          (filters.name === "" ||
-            item.name
-              .replaceAll(" ", "")
-              .toLowerCase()
-              .includes(filters.name.replaceAll(" ", "").toLowerCase())) &&
-          (filters.description === "" ||
-            item.description
-              .replaceAll(" ", "")
-              .toLowerCase()
-              .includes(
-                filters.description.replaceAll(" ", "").toLowerCase()
-              )) &&
-          (filters.head === null ||
-            item.head
-              .replaceAll(" ", "")
-              .toLowerCase()
-              .includes(filters.head.replaceAll(" ", "").toLowerCase()))
-        );
-      }
-    );
+    let _filteredDeps = departments.filter((item: any) => {
+      return (
+        (filters.name === "" ||
+          item.name
+            .replaceAll(" ", "")
+            .toLowerCase()
+            .includes(filters.name.replaceAll(" ", "").toLowerCase())) &&
+        (filters.description === "" ||
+          item.description
+            .replaceAll(" ", "")
+            .toLowerCase()
+            .includes(filters.description.replaceAll(" ", "").toLowerCase())) &&
+        (filters.head === null ||
+          item.head
+            .replaceAll(" ", "")
+            .toLowerCase()
+            .includes(filters.head.replaceAll(" ", "").toLowerCase()))
+      );
+    });
 
-    setDepartments(_filteredDeps);
+    dispatch(setFilterDepartments(_filteredDeps));
 
-    // in real case as we can deal with a huge data, we should use API
-    // getFilteredDepartments(filters)
-    //   .then((res) => {
-    //     if (!!res) {
-    //       setDepartments(res);
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     console.error(err);
-    //   });
+    // in real case as we can deal with a huge data, we should use API getFilteredDepartments(filters)
   };
 
   const resetDepsFilters = () => {
-    setDepartments(_departments);
+    dispatch(resetFilterDepartments());
   };
 
   const filterByStatus = (status: string) => {
-    setDepartments(
-      status === "all"
-        ? _departments
-        : (_departments as IDepartmentData[])?.filter(
-            (f) => f.status === status
-          )
+    dispatch(
+      setFilterDepartments(
+        status === "all"
+          ? departments
+          : departments.filter((f) => f.status === status)
+      )
     );
   };
 
   const getDeps = () => {
     getDepartments()
       .then((res) => {
-        if (!!res) {
-          setDepartments(res);
-          _setDepartments(res);
+        if (res === 200) {
+          dispatch(setFilterDepartments(res.departments));
         }
       })
       .catch((err) => {
@@ -115,7 +107,7 @@ const Departments = () => {
   };
 
   useState(() => {
-    getDeps();
+    !departments && getDeps();
   }, []);
 
   return (
@@ -131,7 +123,7 @@ const Departments = () => {
           <DataTable
             headers={DEPARTMENT_HEADERS}
             mobileHeaders={DEPARTMENT_MOBILE_HEADERS}
-            data={departments}
+            data={filteredDepartments ?? departments}
             selectDep={updateDepartment}
           />
         </>

@@ -8,7 +8,7 @@ import {
   DEPARTMENT_STATUSES,
 } from "../../../../../common/constants/departments.ts";
 import SearchFilterInput from "../../SearchFilterInput/index.tsx";
-import { IFilter } from "../../../models/index.ts";
+import { IFilter } from "../../../common/models.ts";
 import "../styles.scss";
 
 interface IFiltersProps {

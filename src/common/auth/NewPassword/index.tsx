@@ -4,10 +4,10 @@ import Button from "../../shared/Button/Button.tsx";
 import FormWrapper from "../components/FormWrapper/index.tsx";
 import PasswordInput from "../../shared/PasswordInput/index.tsx";
 import ValidationList from "../components/ValidationList/index.tsx";
-import { resetPassword } from "../../httpClient/userService.ts";
 import { passwordValidation } from "../../schemas/userValidation.ts";
 import { useNavigate } from "react-router-dom";
 import SuccessCard from "../../shared/SuccessCard/index.tsx";
+import { resetPassword } from "../../servicies/userService.ts";
 import "./styles.scss";
 
 const NewPassword = () => {

@@ -3,15 +3,15 @@ import {
   get,
   post,
   put,
-} from "../../../common/httpClient/httpClient.ts";
-import { IFilter } from "../models/index.ts";
+} from "../../../common/servicies/httpClient/httpClient.ts";
+import { IFilter } from "../common/models.ts";
 
 export const getDepartments: () => Promise<any> = () => {
-  return get(`${baseUrl}/departments`);
+  return get(`${baseUrl}/assets/mock/departments.json`);
 };
 
 export const createDepartments: (payload) => Promise<any> = (payload) => {
-  return post(`${baseUrl}/departments`, {
+  return post(`${baseUrl}/departments.json`, {
     ...payload,
     branches: 0,
     status: "pending",

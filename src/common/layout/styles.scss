@@ -1,5 +1,6 @@
 .layout {
   display: flex;
+  background: #f8f9fa;
 
   .layout-content {
     width: calc(100% - 16.3rem);
@@ -7,7 +8,7 @@
     .page-wrapper {
       padding: 2rem;
       height: calc(100% - 4.3rem);
-      background: #f8f9fa;
+    
     }
   }
 }
@@ -16,9 +17,9 @@
   .layout {
     .layout-content {
       width: 100%;
+      height: 100vh;
 
       .page-wrapper {
-        height: 90vh;
         padding: 1rem 2rem;
       }
     }

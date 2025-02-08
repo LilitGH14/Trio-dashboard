@@ -29,7 +29,7 @@ const FormWrapper = ({
         <div className="inner-wrapper">
           <div className="form-header">
             {title && <Typography variant="title">{title}</Typography>}
-            {subTitle && <Typography variant="subTitle">{subTitle}</Typography>}
+            {subTitle && <Typography variant="text">{subTitle}</Typography>}
             {generalError?.hasError && (
               <ErrorMessage error={generalError.error} variant="general" />
             )}

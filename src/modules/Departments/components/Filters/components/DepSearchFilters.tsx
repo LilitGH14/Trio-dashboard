@@ -48,7 +48,7 @@ const DepSearchFilters = ({
       ))}
       <Button
         type="submit"
-        disabled={isValid}
+        disabled={false}
         text={"Show Results"}
         className={"secondary"}
       />

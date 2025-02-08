@@ -5,7 +5,7 @@ import Button from "../../shared/Button/Button.tsx";
 import FormWrapper from "../components/FormWrapper/index.tsx";
 import { Link, useNavigate } from "react-router-dom";
 import { emailValidationSchema } from "../../schemas/userValidation.ts";
-import { getLink } from "../../httpClient/userService.ts";
+import { getLink } from "../../servicies/userService.ts";
 import "./styles.scss";
 
 const ResetPassword = () => {

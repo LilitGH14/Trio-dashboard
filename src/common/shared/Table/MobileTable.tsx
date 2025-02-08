@@ -3,7 +3,7 @@ import {
   IDepartmentData,
   IDepartmentHeader,
   IDepartmentMobileHeader,
-} from "../../../modules/Departments/models/index.ts";
+} from "../../../modules/Departments/common/models.ts";
 import IconButton from "../IconButton/index.tsx";
 import "./styles.scss";
 

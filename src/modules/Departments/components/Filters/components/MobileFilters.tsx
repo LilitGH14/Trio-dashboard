@@ -1,7 +1,7 @@
 import React, { lazy, useState } from "react";
 import { Formik } from "formik";
 import IconButton from "../../../../../common/shared/IconButton/index.tsx";
-import { IFilter } from "../../../models/index.ts";
+import { IFilter } from "../../../common/models.ts";
 import { useSwipeable } from "react-swipeable";
 import "../styles.scss";
 

@@ -6,10 +6,10 @@ import Button from "../../shared/Button/Button.tsx";
 import PasswordInput from "../../shared/PasswordInput/index.tsx";
 import FormWrapper from "../components/FormWrapper/index.tsx";
 import { Link, useNavigate } from "react-router-dom";
-import { login } from "../../httpClient/userService.ts";
 import { setUser } from "../../redux/slices/generalSlice.ts";
 import { useAuth } from "../../hooks/useAuth.ts";
 import { userValidationSchema } from "../../schemas/userValidation.ts";
+import { login } from "../../servicies/userService.ts";
 import "./styles.scss";
 
 const Login = () => {
@@ -26,9 +26,9 @@ const Login = () => {
   const getUser = (values) => {
     login(values.email, values.password)
       .then((res) => {
-        if (res[0]) {
-          dispatch(setUser(res[0]));
-          setUserPermissions(res[0].permissions);
+        if (res.status === 200) {
+          dispatch(setUser(res.data));
+          setUserPermissions(res.data.permissions);
           navigate("/dashboard");
         } else {
           setGeneralError({

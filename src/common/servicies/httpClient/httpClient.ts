@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const baseUrl = "http://localhost:3000";
+export const baseUrl = window.location.origin;
 
 const instance = axios.create({});
 const headers = {

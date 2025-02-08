@@ -5,10 +5,10 @@ import "./styles.scss";
 const Terms = () => {
   return (
     <div className="terms-wrapper">
-      <Typography variant="text">
+      <Typography variant="textSm">
         By signing up to create an account I accept Company’s
       </Typography>
-      <Typography variant="textBold">Terms of use & Privacy Policy.</Typography>
+      <Typography variant="textSMBold">Terms of use & Privacy Policy.</Typography>
     </div>
   );
 };

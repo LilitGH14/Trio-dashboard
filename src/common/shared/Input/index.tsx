@@ -28,7 +28,7 @@ const Input = ({
   placeholder,
 }: IInputProps) => {
   return (
-    <div className={`input-wrapper ${errors.email ? "error" : ""}`}>
+    <div className={`input-wrapper ${errors[name] ? "error" : ""}`}>
       <label htmlFor={name}>{label}</label>
       <div>
         {variant === "textarea" ? (
@@ -52,7 +52,7 @@ const Input = ({
           />
         )}
       </div>
-      {errors[name] && touched[name] && errors[name] && (
+      {errors[name] && touched[name] && (
         <ErrorMessage error={errors[name]} variant="specific" />
       )}
     </div>

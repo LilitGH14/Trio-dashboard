@@ -3,7 +3,7 @@ import {
   IDepartmentData,
   IDepartmentHeader,
   IDepartmentMobileHeader,
-} from "../../../modules/Departments/models/index.ts";
+} from "../../../modules/Departments/common/models.ts";
 import Chip from "../Chip/index.tsx";
 import LinkText from "../Link/index.tsx";
 import "./styles.scss";

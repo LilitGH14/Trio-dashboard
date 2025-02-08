@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import {
   IDepartmentData,
   IDepartmentHeader,
-} from "../../../modules/Departments/models/index.ts";
+} from "../../../modules/Departments/common/models.ts";
 import Typography from "../Typography/index.tsx";
 import "./styles.scss";
 
