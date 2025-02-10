@@ -1,0 +1,12 @@
+.new-department-wrapper {
+  width: 25rem;
+
+  .btns-wrapper {
+    display: flex;
+    gap: 2rem;
+
+    button{
+      width: 100%;
+    }
+  }
+}

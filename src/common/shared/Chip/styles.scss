@@ -1,0 +1,50 @@
+.chip {
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 8px 12px;
+  text-transform: capitalize;
+
+  &.disabled {
+    background-color: #6c757d1a;
+    color: #6c757d;
+  }
+
+  &.active {
+    background-color: #15c7a71a;
+    color: #15c7a7;
+  }
+
+  &.pending {
+    background-color: #152dc71a;
+    color: #7192ec;
+  }
+}
+
+@media (max-width: 1024px) {
+  .chip {
+    padding: 8px;
+
+    span {
+      display: none;
+    }
+
+    &.disabled {
+      &::after {
+        content: url("../../../../public/assets/svg/general-icons/disabled-icon.svg");
+      }
+    }
+
+    &.active {
+      &::after {
+        content: url("../../../../public/assets/svg/general-icons/done.svg");
+      }
+    }
+
+    &.pending {
+      &::after {
+        content: url("../../../../public/assets/svg/general-icons/disabled-icon.svg");
+      }
+    }
+  }
+}

@@ -1,0 +1,228 @@
+.table-wrapper {
+  .mobile-table-content {
+    display: none;
+
+    .no-results {
+      h3 {
+        text-align: center;
+        padding: 2rem;
+      }
+    }
+  }
+
+  .table-content {
+    display: flex;
+    flex-direction: column;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    background: #ffffff;
+    color: #000000;
+    overflow: auto;
+    max-height: calc(100vh - 18.3rem);
+
+    &::-webkit-scrollbar {
+      width: 7px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #f1f1f1; 
+    }
+     
+    &::-webkit-scrollbar-thumb {
+      background: #bbb9b9; 
+    }
+    
+    &::-webkit-scrollbar-thumb:hover {
+      background: #c4c3c3; 
+    }
+
+    .no-data {
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .action {
+      width: 10%;
+      cursor: pointer;
+    }
+
+    .col-1 {
+      width: 10%;
+      text-align: center;
+    }
+
+    .col-2 {
+      width: 15%;
+    }
+
+    .col-4 {
+      width: 40%;
+    }
+
+    .fixed-header {
+      display: flex;
+      width: 100%;
+
+      .header-item {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        padding: 1rem;
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        box-sizing: border-box;
+      }
+    }
+
+    .data-wrapper {
+      display: flex;
+      width: 100%;
+      color: #4b5563;
+
+      .data-item {
+        border-top: 1px solid #e5e7eb;
+        padding: 1rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .table-wrapper {
+    .table-content {
+      display: none;
+    }
+
+    .mobile-table-content {
+      display: block;
+
+      .mobile-table-header {
+        display: flex;
+        width: 100%;
+        background: rgba(255, 255, 255, 1);
+        border-bottom: 0.4px solid rgba(223, 223, 223, 1);
+
+        .header-item {
+          &:not(:first-child) {
+            text-align: center;
+          }
+          &:last-child {
+            text-align: right;
+          }
+        }
+
+        .header-item {
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          padding: 1rem 1.8rem;
+          font-size: 0.8rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          box-sizing: border-box;
+          height: 100%;
+          width: 100%;
+        }
+      }
+
+      .card {
+        margin-bottom: 2px;
+        position: relative;
+
+        .arrow {
+          position: relative;
+          right: -6px;
+          height: 6px;
+
+          &.up {
+            transform: rotate(-180deg);
+          }
+          &.down {
+            transform: rotate(0);
+          }
+        }
+      }
+
+      .accordion {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        padding: 1.4rem 1.6rem;
+        width: 100%;
+        font-size: 0.8rem;
+        transition: 0.4s;
+        background: rgba(255, 255, 255, 1);
+        border-bottom: 0.4px solid rgba(223, 223, 223, 1);
+        border-radius: 8px;
+        color: grey;
+        font-weight: 700;
+
+        .header-item {
+          text-align: center;
+
+          &:nth-child(3) {
+            text-align: right;
+          }
+
+          &:first-child {
+            text-align: left;
+          }
+        }
+      }
+
+      .panel {
+        background: rgba(255, 255, 255, 1);
+        border-bottom: 0.4px solid rgba(223, 223, 223, 1);
+        border-bottom-right-radius: 8px;
+        border-bottom-left-radius: 8px;
+        overflow: hidden;
+        max-height: 0;
+        font-size: 18pt;
+        overflow: hidden;
+        box-sizing: border-box;
+        transition: top 1s;
+
+        .btn-wrapper {
+          border-top: 0.4px solid rgba(223, 223, 223, 0.5);
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+          padding: 1rem 0 0;
+
+          button {
+            margin: 0 0 0 1rem;
+          }
+        }
+
+        .data-item {
+          font-size: 1rem;
+          margin-bottom: 1rem;
+          color: rgba(108, 117, 125, 1);
+        }
+
+        &.open {
+          max-height: 100%;
+          width: 100%;
+          padding: 1rem 1.4rem;
+          display: block;
+          margin-bottom: 1rem;
+          margin-top: -10px;
+        }
+
+        &.closed {
+          display: none;
+          max-height: 0;
+          padding: 1rem;
+        }
+      }
+    }
+
+    .header-item,
+    .data-item {
+      flex: unset;
+      width: 95%;
+    }
+  }
+}

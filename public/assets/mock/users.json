@@ -1,0 +1,18 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "lilit1245@mail.ru",
+      "password": "Test@123",
+      "username": "LilitNG",
+      "permissions": ["dashboard", "departments", "settings"]
+    },
+    {
+      "id": 2,
+      "email": "lilit4512@mail.ru",
+      "password": "Test@124",
+      "username": "LilitNG",
+      "permissions": ["dashboard", "departments"]
+    }
+  ]
+}

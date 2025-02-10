@@ -1,0 +1,26 @@
+.layout {
+  display: flex;
+  background: #f8f9fa;
+
+  .layout-content {
+    width: calc(100% - 16.3rem);
+
+    .page-wrapper {
+      padding: 2rem;
+      height: calc(100% - 4.3rem);
+    
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .layout {
+    .layout-content {
+      width: 100%;
+
+      .page-wrapper {
+        padding: 1rem 2rem;
+      }
+    }
+  }
+}

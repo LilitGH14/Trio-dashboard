@@ -1,0 +1,32 @@
+{
+  "status": 200,
+  "departments": [
+    {
+      "name": "Finance",
+      "description": "Oversees budgeting, payroll, and financial planni...",
+      "head": "Gevorg Yengibaryan",
+      "branches": 3,
+      "status": "disabled",
+      "id": "8378",
+      "userId": 1
+    },
+    {
+      "name": "Quality Assurance",
+      "description": "Ensures product standards and performance thro...",
+      "head": "Grigoryan Hamlet",
+      "branches": 2,
+      "status": "active",
+      "id": "4228",
+      "userId": 1
+    },
+    {
+      "id": "14c1",
+      "name": "ekzema",
+      "description": "jvjhvjhvjhv",
+      "head": "Armen Harutyunyan",
+      "branches": 0,
+      "status": "pending",
+      "userId": 1
+    }
+  ]
+}
